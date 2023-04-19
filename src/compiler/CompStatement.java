@@ -2,6 +2,15 @@ package compiler;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import x64codegen.X64AssemblyGenerator;
+//import parser.*;
+import lowlevel.*;
+import java.util.*;
+import java.io.*;
+import optimizer.*;
+import x86codegen.*;
+import x64codegen.*;
+import dataflow.*;
 
 public class CompStatement extends Statement {
 
@@ -49,8 +58,14 @@ public class CompStatement extends Statement {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	protected void genCode(Function f) {
+		
+	}
 	
 	ArrayList<Declaration> localDecl;
 	ArrayList<Statement> stmtList;
+	
+	
 
 }

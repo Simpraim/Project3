@@ -63,9 +63,15 @@ public class FunDeclaration extends Declaration{
 		}
 		
 	}
+	@Override
+	protected void genCode() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'genCode'");
+	}
 	
 	Boolean IsInt;
 	String Identifier;
 	ArrayList<Param> parameters;
 	CompStatement statements;
+	
 }

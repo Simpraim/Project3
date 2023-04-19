@@ -2,6 +2,15 @@ package compiler;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import x64codegen.X64AssemblyGenerator;
+//import parser.*;
+import lowlevel.*;
+import java.util.*;
+import java.io.*;
+import optimizer.*;
+import x86codegen.*;
+import x64codegen.*;
+import dataflow.*;
 
 public class AssignExpression extends Expression {
 
@@ -20,11 +29,20 @@ public class AssignExpression extends Expression {
 		f.write(indent+"=\n");
 		v.print("\t"+ indent,f);
 		rhs.print("\t"+indent,f);
-		//System.out.print(";");
+		
+		
+	}
+	protected void setRegNum(int n){
+		regNum = n;
+	}
+	@Override
+	protected void genCode(Function f) {
 		
 	}
 	
 	VarExpression v; //Var Expression
 	Expression rhs;
+	int regNum;
+	
 
 }
