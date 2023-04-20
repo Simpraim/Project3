@@ -37,7 +37,9 @@ public class VarDeclaration extends Declaration {
 	}
 	@Override
 	protected CodeItem genCode() {
-		return null;
+		Data result = new Data(1, Identifier);
+		//How do we add data to the symbol table?
+		return result;
 		
 		
 	}
