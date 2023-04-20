@@ -36,7 +36,8 @@ public class VarDeclaration extends Declaration {
 		
 	}
 	@Override
-	protected void genCode() {
+	protected CodeItem genCode() {
+		return null;
 		
 		
 	}

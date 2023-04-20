@@ -3,6 +3,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
+import lowlevel.CodeItem;
+
 public class FunDeclaration extends Declaration{
 
 	
@@ -64,9 +66,8 @@ public class FunDeclaration extends Declaration{
 		
 	}
 	@Override
-	protected void genCode() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'genCode'");
+	protected CodeItem genCode() {
+		return null;
 	}
 	
 	Boolean IsInt;

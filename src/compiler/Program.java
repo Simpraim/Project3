@@ -21,6 +21,8 @@ public class Program {
 		dList = dl;
 	}
 	ArrayList<Declaration> dList;
+	CodeItem head;
+	CodeItem tail;
 	
 	void printTree(FileWriter f) throws Exception {
 		System.out.println("Program");
@@ -29,7 +31,7 @@ public class Program {
 			try {
 				n.print("\t",f);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		});
@@ -38,7 +40,29 @@ public class Program {
 	
 	public CodeItem genCode() {
 		
-		return null;
+		dList.forEach((decl)->{
+			CodeItem x;
+			try{
+				x = decl.genCode();
+				if(head==null){
+					head = x;
+					tail = x;
+				}
+				else{
+					tail.setNextItem(x);
+					tail = x;
+				}
+
+
+
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+
+		});
+		
+		return head;
 		
 	}
 }
