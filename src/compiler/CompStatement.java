@@ -60,7 +60,10 @@ public class CompStatement extends Statement {
 	}
 	@Override
 	protected void genCode(Function f) {
-		
+		localDecl.forEach((ld)->{
+         CodeItem ci = ld.genCode(f);
+
+		});
 	}
 	
 	ArrayList<Declaration> localDecl;

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.*;
 
 import lowlevel.CodeItem;
+import lowlevel.Function;
 
 public class FunDeclaration extends Declaration{
 
@@ -66,7 +67,7 @@ public class FunDeclaration extends Declaration{
 		
 	}
 	@Override
-	protected CodeItem genCode() {
+	protected CodeItem genCode(Function f) {
 		
 		return null;
 	}
@@ -75,5 +76,10 @@ public class FunDeclaration extends Declaration{
 	String Identifier;
 	ArrayList<Param> parameters;
 	CompStatement statements;
+	@Override
+	protected CodeItem genCode() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'genCode'");
+	}
 	
 }

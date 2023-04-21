@@ -34,6 +34,12 @@ public class RetStatement extends Statement{
 		
 	}
 	protected void genCode(Function f){
+		if(expr != null){
+			expr.genCode(f);
+			//get register of resulting expression
+			//set return register to that value
+		}
+		//Jump to return block
 		
 	}
 

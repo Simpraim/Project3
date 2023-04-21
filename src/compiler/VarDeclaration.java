@@ -43,9 +43,10 @@ public class VarDeclaration extends Declaration {
 		
 		
 	}
-	protected void genCode(Function f){
+	protected CodeItem genCode(Function f){
 	 int regNum = f.getNewRegNum();
 	 f.getTable().put(Identifier, regNum);
+	return f;
 
 	}
 	

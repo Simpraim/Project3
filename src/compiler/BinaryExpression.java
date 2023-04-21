@@ -35,7 +35,10 @@ public class BinaryExpression extends Expression{
 		regNum = n;
 	}
 	protected void genCode(Function f){
-		
+		lhs.genCode(f);
+		rhs.genCode(f);
+		//Get lhs result register
+		//get rhs result register
 	}
 	
 	Expression lhs;
