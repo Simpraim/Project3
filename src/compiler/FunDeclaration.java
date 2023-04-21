@@ -67,6 +67,7 @@ public class FunDeclaration extends Declaration{
 	}
 	@Override
 	protected CodeItem genCode() {
+		
 		return null;
 	}
 	

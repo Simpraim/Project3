@@ -5,6 +5,9 @@ import java.io.IOException;
 import x64codegen.X64AssemblyGenerator;
 //import parser.*;
 import lowlevel.*;
+import lowlevel.Operand.OperandType;
+import lowlevel.Operation.OperationType;
+
 import java.util.*;
 import java.io.*;
 import optimizer.*;
@@ -30,6 +33,13 @@ public class NumExpression extends Expression{
 	}
 	@Override
 	protected void genCode(Function f) {
+	 int newRegNum = f.getNewRegNum();
+	 Operation o = new Operation(OperationType.ASSIGN, f.getCurrBlock());
+	 Operand dest = new Operand(OperandType.REGISTER, newRegNum);
+	 o.setDestOperand(0, dest);
+	 Operand src = new Operand(OperandType.INTEGER, num);
+	 o.setSrcOperand(0, src);
+	 f.getCurrBlock().appendOper(o);
 		
 	}
 	

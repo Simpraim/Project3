@@ -33,7 +33,7 @@ public class ExprStatement extends Statement{
 	}
 
 	protected void genCode(Function f){
-		
+		exprList.genCode(f);
 	}
 	
 	Expression exprList;

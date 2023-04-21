@@ -38,12 +38,14 @@ public class VarDeclaration extends Declaration {
 	@Override
 	protected CodeItem genCode() {
 		Data result = new Data(1, Identifier);
-		//How do we add data to the symbol table?
+		CMinusCompiler.globalHash.put(Identifier, Identifier);
 		return result;
 		
 		
 	}
 	protected void genCode(Function f){
+	 int regNum = f.getNewRegNum();
+	 f.getTable().put(Identifier, regNum);
 
 	}
 	
