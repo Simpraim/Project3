@@ -37,7 +37,9 @@ public class RetStatement extends Statement{
 		if(expr != null){
 			expr.genCode(f);
 			//get register of resulting expression
+			int resultReg = expr.getRegNum();
 			//set return register to that value
+			
 		}
 		//Jump to return block
 		

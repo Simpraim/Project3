@@ -48,11 +48,20 @@ public class AssignExpression extends Expression {
 			Operation operation = new Operation(OperationType.ASSIGN,f.getCurrBlock());
 			Operand src = new Operand(OperandType.REGISTER, rhs.getRegNum());
 			Operand dest = new Operand(OperandType.REGISTER, v.getRegNum());
-			operation.setSrcOperand(rhs.getRegNum(), src);
-			operation.setDestOperand(v.getRegNum(), dest);
+			operation.setSrcOperand(0, src);
+			operation.setDestOperand(0, dest);
+			f.getCurrBlock().appendOper(operation);
+			//Where do we set these expression register numbers? regNum = ???
 
 		}
 		else if(CMinusCompiler.globalHash.containsKey(variableName)){
+			Operation operation = new Operation(OperationType.STORE_I, f.getCurrBlock());
+			Operand src1 = new Operand(OperandType.REGISTER, rhs.getRegNum());
+			Operand src2 = new Operand(OperandType.STRING, variableName);
+			operation.setSrcOperand(0, src1);
+			operation.setSrcOperand(1, src2);
+			f.getCurrBlock().appendOper(operation);
+			//Where do we set these expression register numbers? regNum = ???
 
 		}
 		else{

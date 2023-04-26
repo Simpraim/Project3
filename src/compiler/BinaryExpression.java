@@ -77,11 +77,18 @@ public class BinaryExpression extends Expression{
 		//get rhs result register
 		int rightRegNum = rhs.getRegNum();
 		Operand r = new Operand(Operand.OperandType.REGISTER, rightRegNum);
+
+		//Get the operation type and annotate with a new register number
 		OperationType t = opToType(op);
+		int destRegNum = f.getNewRegNum();
+		regNum = destRegNum;
+		Operand destOperand = new Operand(OperandType.REGISTER, destRegNum);
 		Operation operation = new Operation(t, f.getCurrBlock());
-		
-		
-		
+		operation.setSrcOperand(0, l);
+		operation.setSrcOperand(1, r);
+		operation.setDestOperand(0, destOperand);
+		f.getCurrBlock().appendOper(operation);
+		//Where do we set these expression register numbers? regNum = ???
 	}
 	
 	Expression lhs;

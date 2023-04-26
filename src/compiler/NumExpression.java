@@ -37,12 +37,14 @@ public class NumExpression extends Expression{
 	@Override
 	protected void genCode(Function f) {
 	 int newRegNum = f.getNewRegNum();
+	 regNum = newRegNum;
 	 Operation o = new Operation(OperationType.ASSIGN, f.getCurrBlock());
 	 Operand dest = new Operand(OperandType.REGISTER, newRegNum);
 	 o.setDestOperand(0, dest);
 	 Operand src = new Operand(OperandType.INTEGER, num);
 	 o.setSrcOperand(0, src);
 	 f.getCurrBlock().appendOper(o);
+	 //Where do we set these expression register numbers? regNum = ???
 		
 	}
 	

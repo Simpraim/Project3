@@ -55,14 +55,13 @@ public class CompStatement extends Statement {
 			
 		}
 		
-		// TODO Auto-generated method stub
+		
 		
 	}
 	@Override
 	protected void genCode(Function f) {
 		localDecl.forEach((ld)->{
          CodeItem ci = ld.genCode(f);
-
 		});
 	}
 	
