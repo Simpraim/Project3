@@ -20,7 +20,7 @@ public class RetStatement extends Statement{
 		expr = el;
 	}
 	@Override
-	protected void print(String indent,FileWriter f) throws IOException {
+	protected void print(String indent,FileWriter f) throws Exception {
 		if(expr != null){
 			System.out.println(indent +"return");
 			f.write(indent +"return\n");
@@ -33,7 +33,7 @@ public class RetStatement extends Statement{
 		}
 		
 	}
-	protected void genCode(Function f){
+	protected void genCode(Function f) throws Exception{
 		if(expr != null){
 			expr.genCode(f);
 			//get register of resulting expression

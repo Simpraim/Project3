@@ -5,6 +5,9 @@ import java.io.IOException;
 import x64codegen.X64AssemblyGenerator;
 //import parser.*;
 import lowlevel.*;
+import lowlevel.Operand.OperandType;
+import lowlevel.Operation.OperationType;
+
 import java.util.*;
 import java.io.*;
 import optimizer.*;
@@ -20,10 +23,38 @@ public class BinaryExpression extends Expression{
 		rhs = r;
 		op = o;
 	}
+
+	private Operation.OperationType opToType(String o){
+		switch(o){
+			case "+":
+			  	return OperationType.ADD_I;
+			case "-":
+				return OperationType.SUB_I;
+			case "*":
+				return OperationType.MUL_I;
+			case "/": 
+				return OperationType.DIV_I;
+			case "!=":
+				return OperationType.NOT_EQUAL;
+			case ">":
+				return OperationType.GT;
+			case "<":
+				return OperationType.LT;
+			case ">=":
+				return OperationType.GTE;
+			case "<=":
+				return OperationType.LTE;
+			case "==":
+				return OperationType.EQUAL;
+			default:
+			 return OperationType.UNKNOWN;
+		}
+
+	}
 	
 	
 	@Override
-	protected void print(String indent,FileWriter f) throws IOException {
+	protected void print(String indent,FileWriter f) throws Exception {
 		
 		System.out.println(indent + op );
 		f.write(indent + op +"\n");
@@ -34,11 +65,23 @@ public class BinaryExpression extends Expression{
 	protected void setRegNum(int n){
 		regNum = n;
 	}
-	protected void genCode(Function f){
+	protected int getRegNum(){
+		return regNum;
+	}
+	protected void genCode(Function f) throws Exception{
 		lhs.genCode(f);
 		rhs.genCode(f);
 		//Get lhs result register
+		int leftRegNum = lhs.getRegNum();
+		Operand l = new Operand(Operand.OperandType.REGISTER, leftRegNum);
 		//get rhs result register
+		int rightRegNum = rhs.getRegNum();
+		Operand r = new Operand(Operand.OperandType.REGISTER, rightRegNum);
+		OperationType t = opToType(op);
+		Operation operation = new Operation(t, f.getCurrBlock());
+		
+		
+		
 	}
 	
 	Expression lhs;

@@ -25,7 +25,7 @@ public class SelsSatement extends Statement {
 		}
 	}
 	@Override
-	protected void print(String indent,FileWriter f) throws IOException {
+	protected void print(String indent,FileWriter f) throws Exception {
 		if(isElse){
 			System.out.println(indent +"if");
 			f.write(indent +"if\n");

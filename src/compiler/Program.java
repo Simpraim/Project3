@@ -30,7 +30,7 @@ public class Program {
 		dList.forEach((n)-> {
 			try {
 				n.print("\t",f);
-			} catch (IOException e) {
+			} catch (Exception e) {
 				
 				e.printStackTrace();
 			}

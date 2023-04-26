@@ -21,7 +21,7 @@ public class VarExpression extends Expression {
 		expr = e;
 	}
 	@Override
-	protected void print(String indent,FileWriter f) throws IOException {
+	protected void print(String indent,FileWriter f) throws Exception {
 		System.out.println(indent +Identifier);
 		f.write(indent +Identifier+ "\n");
 		if (expr != null) {
@@ -37,9 +37,12 @@ public class VarExpression extends Expression {
 	protected void setRegNum(int n){
 		regNum = n;
 	}
+	protected int getRegNum(){
+		return regNum;
+	}
 
 	@Override
-	protected void genCode(Function f) {
+	protected void genCode(Function f) throws Exception{
 		
 	}
 	

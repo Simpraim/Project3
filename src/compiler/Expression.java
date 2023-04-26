@@ -15,8 +15,9 @@ import dataflow.*;
 public abstract class Expression {
 	
 
-	protected abstract void print(String s, FileWriter f) throws IOException;
-	protected abstract void genCode(Function f);
+	protected abstract void print(String s, FileWriter f) throws Exception;
+	protected abstract void genCode(Function f) throws Exception;
+	protected abstract int  getRegNum();
 	protected int regNum;
 }
 

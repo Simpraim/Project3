@@ -18,7 +18,7 @@ public class FunDeclaration extends Declaration{
 		statements = s;
 	}
 	@Override
-	protected void print(String indent,FileWriter f) throws IOException {
+	protected void print(String indent,FileWriter f) throws Exception {
 		if(IsInt == false){
 			if(parameters != null){
 			System.out.println(indent+"void " + Identifier );

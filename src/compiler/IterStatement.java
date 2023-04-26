@@ -21,7 +21,7 @@ public class IterStatement extends Statement{
 		stmt = s;
 	}
 	@Override
-	protected void print(String indent,FileWriter f) throws IOException {
+	protected void print(String indent,FileWriter f) throws Exception {
 		System.out.println(indent+"while(");
 		f.write(indent+"while(\n");
 		expr.print("\t"+indent,f);

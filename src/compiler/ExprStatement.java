@@ -22,7 +22,7 @@ public class ExprStatement extends Statement{
 		exprList = el;
 	}
 	@Override
-	protected void print(String indent,FileWriter f) throws IOException {
+	protected void print(String indent,FileWriter f) throws Exception {
 		if(exprList != null){
 		exprList.print("\t" + indent,f);
 		
@@ -32,7 +32,7 @@ public class ExprStatement extends Statement{
 		}
 	}
 
-	protected void genCode(Function f){
+	protected void genCode(Function f) throws Exception{
 		exprList.genCode(f);
 	}
 	

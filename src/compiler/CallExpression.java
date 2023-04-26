@@ -20,7 +20,7 @@ public class CallExpression extends Expression {
 	}
 	
 	@Override
-	protected void print(String indent,FileWriter f) throws IOException {
+	protected void print(String indent,FileWriter f) throws Exception {
 		System.out.println(indent+ Identifier + "(");
 		f.write(indent+ Identifier + "(\n");
 		if (expressionList.size() > 0) {
@@ -37,6 +37,9 @@ public class CallExpression extends Expression {
 	}
 	protected void setRegNum(int n){
 		regNum = n;
+	}
+	protected int getRegNum(){
+		return regNum;
 	}
 	protected void genCode(Function f){
 		

@@ -23,12 +23,12 @@ public class CompStatement extends Statement {
 	}
 	@Override
 	
-	protected void print(String indent,FileWriter f)throws IOException {
+	protected void print(String indent,FileWriter f)throws Exception {
 		if(localDecl.isEmpty()) {
 			stmtList.forEach((s)->{
 				try {
 					s.print( "\t" + indent,f);
-				} catch (IOException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -38,7 +38,7 @@ public class CompStatement extends Statement {
 			localDecl.forEach((ld)->{
 				try {
 					ld.print( "\t" + indent,f);
-				} catch (IOException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -47,7 +47,7 @@ public class CompStatement extends Statement {
 			stmtList.forEach((s)->{
 				try {
 					s.print( "\t" + indent,f);
-				} catch (IOException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

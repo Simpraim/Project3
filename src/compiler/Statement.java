@@ -13,9 +13,9 @@ import x64codegen.*;
 import dataflow.*;
 
 public abstract class Statement {
-    protected abstract void print(String s, FileWriter f) throws IOException;
+    protected abstract void print(String s, FileWriter f) throws IOException, Exception;
 
-    protected abstract void genCode(Function f);
+    protected abstract void genCode(Function f) throws Exception;
 
 	// This is probably very very wrong...just an educational guess T-T
 	// Add this variable to determine statement type
@@ -27,26 +27,29 @@ public abstract class Statement {
         SelsStatement
     }
 
-    protected abstract StmtType getStmtType();
+    protected static StmtType getStmtType() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getStmtType'");
+    }
 
     protected StmtType stmtType = StmtType.ExprStatement;
 
-    protected void genCode(Function f, int regNum) {
+    protected static void genCode(Function f, int regNum) {
         switch (getStmtType()) {
             case ExprStatement:
-                ((ExprStatement) this).genCode(f, regNum);
+                ExprStatement.genCode(f, regNum);
                 break;
             case CompStatement:
-                ((CompStatement) this).genCode(f, regNum);
+                CompStatement.genCode(f, regNum);
                 break;
             case IterStatement:
-                ((IterStatement) this).genCode(f, regNum);
+                IterStatement.genCode(f, regNum);
                 break;
             case RetStatement:
-                ((RetStatement) this).genCode(f, regNum);
+                RetStatement.genCode(f, regNum);
                 break;
             case SelsStatement:
-                ((SelsStatement) this).genCode(f, regNum);
+                SelsSatement.genCode(f, regNum);
                 break;
             default:
                 throw new RuntimeException("Invalid Statement Type");

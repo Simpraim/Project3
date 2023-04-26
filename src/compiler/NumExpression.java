@@ -31,6 +31,9 @@ public class NumExpression extends Expression{
 	protected void setRegNum(int n){
 		regNum = n;
 	}
+	protected int getRegNum(){
+		return regNum;
+	}
 	@Override
 	protected void genCode(Function f) {
 	 int newRegNum = f.getNewRegNum();
