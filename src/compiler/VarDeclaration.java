@@ -37,6 +37,7 @@ public class VarDeclaration extends Declaration {
 	}
 	@Override
 	protected CodeItem genCode() {
+		//Handle if it's an array
 		Data result = new Data(1, Identifier);
 		CMinusCompiler.globalHash.put(Identifier, Identifier);
 		return result;

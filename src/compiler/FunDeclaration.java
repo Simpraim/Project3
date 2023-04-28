@@ -3,7 +3,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
+import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
+import lowlevel.Data;
+import lowlevel.FuncParam;
 import lowlevel.Function;
 
 public class FunDeclaration extends Declaration{
@@ -77,9 +80,129 @@ public class FunDeclaration extends Declaration{
 	ArrayList<Param> parameters;
 	CompStatement statements;
 	@Override
-	protected CodeItem genCode() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'genCode'");
+	protected CodeItem genCode() throws Exception {
+
+//1) FuncParams + Symbol table
+	FuncParam firstParam = null;
+	FuncParam tempParam = null;
+	FuncParam prevParam = null;
+	
+	//function creation
+	if(IsInt){
+		Function f = new Function(Data.TYPE_INT, Identifier, null);
+		HashMap table = f.getTable();
+		if(parameters==null){
+			tempParam = new FuncParam(Data.TYPE_VOID, "void",false);
+			firstParam = tempParam;
+			f.setFirstParam(firstParam);
+			f.createBlock0();
+			BasicBlock b = new BasicBlock(f);
+			f.appendBlock(b);
+			f.setCurrBlock(b);
+			statements.genCode(f);
+			f.appendBlock(f.getReturnBlock());
+			if(f.getFirstUnconnectedBlock()!=null){
+				f.appendBlock(f.getFirstUnconnectedBlock());
+			}
+			return f;
+		}
+		else{
+			for(Param p : parameters){
+					if(table.containsKey(p.identifier)){
+						throw new Exception("Error: the variable "+ p.identifier+ " is already in use");
+					}
+					table.put(p.identifier, f.getNewRegNum());	
+				
+					if(p.isArray)tempParam = new FuncParam(Data.TYPE_INT, p.identifier,true);
+					else if (!p.isArray)tempParam = new FuncParam(Data.TYPE_INT, p.identifier,false);
+					if(firstParam ==null){
+						firstParam = tempParam;
+					}
+					else if(prevParam == null && firstParam != null){
+						prevParam = tempParam;
+						firstParam.setNextParam(prevParam);
+					}
+					else{
+						prevParam.setNextParam(tempParam);
+						prevParam = tempParam;
+					}
+			   }
+			f.setFirstParam(firstParam);
+			f.createBlock0();
+			BasicBlock b = new BasicBlock(f);
+			f.appendBlock(b);
+			f.setCurrBlock(b);
+			statements.genCode(f);
+			f.appendBlock(f.getReturnBlock());
+			if(f.getFirstUnconnectedBlock()!=null){
+				f.appendBlock(f.getFirstUnconnectedBlock());
+			}
+			return f;
+		}
+
+		
+	} else if (!IsInt) {
+		 Function f = new Function(Data.TYPE_VOID, Identifier, null);
+		 HashMap table = f.getTable();
+		if(parameters==null){
+			tempParam = new FuncParam(Data.TYPE_VOID, "void",false);
+			firstParam = tempParam;
+			f.setFirstParam(firstParam);
+			f.createBlock0();
+			BasicBlock b = new BasicBlock(f);
+			f.appendBlock(b);
+			f.setCurrBlock(b);
+			statements.genCode(f);
+			f.appendBlock(f.getReturnBlock());
+			if(f.getFirstUnconnectedBlock()!=null){
+				f.appendBlock(f.getFirstUnconnectedBlock());
+			}
+			return f;
+		}
+		else{
+			for(Param p : parameters){
+					if(table.containsKey(p.identifier)){
+						throw new Exception("Error: the variable "+ p.identifier+ " is already in use");
+					}
+					table.put(p.identifier, f.getNewRegNum());	
+				
+					if(p.isArray)tempParam = new FuncParam(Data.TYPE_INT, p.identifier,true);
+					else if (!p.isArray)tempParam = new FuncParam(Data.TYPE_INT, p.identifier,false);
+					if(firstParam ==null){
+						firstParam = tempParam;
+					}
+					else if(prevParam == null && firstParam != null){
+						prevParam = tempParam;
+						firstParam.setNextParam(prevParam);
+					}
+					else{
+						prevParam.setNextParam(tempParam);
+						prevParam = tempParam;
+					}
+			   }
+			f.setFirstParam(firstParam);
+			f.createBlock0();
+			BasicBlock b = new BasicBlock(f);
+			f.appendBlock(b);
+			f.setCurrBlock(b);
+			statements.genCode(f);
+			f.appendBlock(f.getReturnBlock());
+			if(f.getFirstUnconnectedBlock()!=null){
+				f.appendBlock(f.getFirstUnconnectedBlock());
+			}
+			return f;
+		}
+		
+	} 
+	
+	
+	else {
+		throw new Exception("error while generating function code");
 	}
 	
+	//get symbol table
+	
+		
+}
+ 
 }

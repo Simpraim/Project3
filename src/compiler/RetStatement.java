@@ -5,6 +5,9 @@ import java.io.IOException;
 import x64codegen.X64AssemblyGenerator;
 //import parser.*;
 import lowlevel.*;
+import lowlevel.Operand.OperandType;
+import lowlevel.Operation.OperationType;
+
 import java.util.*;
 import java.io.*;
 import optimizer.*;
@@ -39,9 +42,19 @@ public class RetStatement extends Statement{
 			//get register of resulting expression
 			int resultReg = expr.getRegNum();
 			//set return register to that value
+			Operand retreg = new Operand(OperandType.MACRO, "RetReg");
+			Operation assignOper = new Operation(OperationType.ASSIGN,f.getCurrBlock());
+			Operand src = new Operand(OperandType.REGISTER, resultReg);
+			assignOper.setDestOperand(0, retreg);
+			assignOper.setSrcOperand(0, src);
+			f.getCurrBlock().appendOper(assignOper);
 			
 		}
 		//Jump to return block
+		Operation jmp = new Operation(OperationType.JMP, f.getCurrBlock());
+		Operand bjump = new Operand(OperandType.BLOCK, f.getReturnBlock().getBlockNum());
+		jmp.setSrcOperand(0, bjump);
+		f.getCurrBlock().appendOper(jmp);
 		
 	}
 

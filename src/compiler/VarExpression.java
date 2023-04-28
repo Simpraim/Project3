@@ -48,6 +48,8 @@ public class VarExpression extends Expression {
 	protected void genCode(Function f) throws Exception{
 		if(f.getTable().containsKey(Identifier)){
 			//What do we do here??
+			
+			setRegNum( (int)f.getTable().get(Identifier));
 		}
 		else if(CMinusCompiler.globalHash.containsKey(Identifier)){
 			int location = expr.getRegNum();//Where do we set these expression register numbers? regNum = ???
