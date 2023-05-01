@@ -44,7 +44,7 @@ public class NumExpression extends Expression{
 	 Operand src = new Operand(OperandType.INTEGER, num);
 	 o.setSrcOperand(0, src);
 	 f.getCurrBlock().appendOper(o);
-	 //Where do we set these expression register numbers? regNum = ???
+	 setRegNum(newRegNum);
 		
 	}
 	

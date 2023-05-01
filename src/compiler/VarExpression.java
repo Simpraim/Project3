@@ -47,18 +47,18 @@ public class VarExpression extends Expression {
 	@Override
 	protected void genCode(Function f) throws Exception{
 		if(f.getTable().containsKey(Identifier)){
-			//What do we do here??
-			
+		
 			setRegNum( (int)f.getTable().get(Identifier));
 		}
 		else if(CMinusCompiler.globalHash.containsKey(Identifier)){
-			int location = expr.getRegNum();//Where do we set these expression register numbers? regNum = ???
+			int location = expr.getRegNum();
 			Operand src0 = new Operand(OperandType.STRING, Identifier);
 			Operand src1 = new Operand(OperandType.REGISTER, location);
 			Operation operation = new Operation(OperationType.LOAD_I, f.getCurrBlock());
 			operation.setSrcOperand(0, src0);
 			operation.setSrcOperand(1, src1);
 			f.getCurrBlock().appendOper(operation);
+			setRegNum(location);
 		}
 	}
 	

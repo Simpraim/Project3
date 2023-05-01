@@ -61,7 +61,15 @@ public class CompStatement extends Statement {
 	@Override
 	protected void genCode(Function f) {
 		localDecl.forEach((ld)->{
-         CodeItem ci = ld.genCode(f);
+			CodeItem ci = ld.genCode(f);
+		});
+		stmtList.forEach((s)->{
+			try {
+				s.genCode(f);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		});
 	}
 	

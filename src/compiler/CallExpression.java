@@ -66,7 +66,9 @@ public class CallExpression extends Expression {
 		Operation function = new Operation(OperationType.CALL, f.getCurrBlock());
 		function.setSrcOperand(0, function_string);
 		f.getCurrBlock().appendOper(function);
-		//Where do we set these expression register numbers? regNum = ???
+		setRegNum(regNum);
+		//create assign operation
+		
 
 	}
 	

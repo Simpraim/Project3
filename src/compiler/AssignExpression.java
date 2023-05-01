@@ -51,7 +51,7 @@ public class AssignExpression extends Expression {
 			operation.setSrcOperand(0, src);
 			operation.setDestOperand(0, dest);
 			f.getCurrBlock().appendOper(operation);
-			//Where do we set these expression register numbers? regNum = ???
+			setRegNum(v.getRegNum());
 
 		}
 		else if(CMinusCompiler.globalHash.containsKey(variableName)){
@@ -61,7 +61,7 @@ public class AssignExpression extends Expression {
 			operation.setSrcOperand(0, src1);
 			operation.setSrcOperand(1, src2);
 			f.getCurrBlock().appendOper(operation);
-			//Where do we set these expression register numbers? regNum = ???
+			setRegNum(v.getRegNum());
 
 		}
 		else{

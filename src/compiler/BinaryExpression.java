@@ -88,7 +88,7 @@ public class BinaryExpression extends Expression{
 		operation.setSrcOperand(1, r);
 		operation.setDestOperand(0, destOperand);
 		f.getCurrBlock().appendOper(operation);
-		//Where do we set these expression register numbers? regNum = ???
+		setRegNum(destRegNum);
 	}
 	
 	Expression lhs;
