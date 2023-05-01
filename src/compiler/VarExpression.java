@@ -51,12 +51,13 @@ public class VarExpression extends Expression {
 			setRegNum( (int)f.getTable().get(Identifier));
 		}
 		else if(CMinusCompiler.globalHash.containsKey(Identifier)){
-			int location = expr.getRegNum();
+			
+			int location = f.getNewRegNum();
 			Operand src0 = new Operand(OperandType.STRING, Identifier);
-			Operand src1 = new Operand(OperandType.REGISTER, location);
+			Operand dest = new Operand(OperandType.REGISTER, location);
 			Operation operation = new Operation(OperationType.LOAD_I, f.getCurrBlock());
 			operation.setSrcOperand(0, src0);
-			operation.setSrcOperand(1, src1);
+			operation.setDestOperand(0, dest);
 			f.getCurrBlock().appendOper(operation);
 			setRegNum(location);
 		}

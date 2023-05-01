@@ -44,10 +44,14 @@ public class AssignExpression extends Expression {
 	@Override
 	protected void genCode(Function f) throws Exception {
 		String variableName = v.Identifier;
+		rhs.genCode(f);
 		if(f.getTable().containsKey(variableName)){
+			
+			int lhs = f.getTable().get(variableName);
+			v.genCode(f);
 			Operation operation = new Operation(OperationType.ASSIGN,f.getCurrBlock());
 			Operand src = new Operand(OperandType.REGISTER, rhs.getRegNum());
-			Operand dest = new Operand(OperandType.REGISTER, v.getRegNum());
+			Operand dest = new Operand(OperandType.REGISTER, lhs);
 			operation.setSrcOperand(0, src);
 			operation.setDestOperand(0, dest);
 			f.getCurrBlock().appendOper(operation);

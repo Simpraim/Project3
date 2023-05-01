@@ -95,7 +95,7 @@ public class Function extends CodeItem {
     maxBlockNum = 0;
     maxOperNum = 0;
     currBlock = null;
-    symbolTable = new HashMap();
+    symbolTable = new HashMap<String,Integer>();
     maxRegNum = 0;
     returnBlock = genReturnBlock();
     firstUnconnectedBlock = null;
@@ -183,7 +183,7 @@ public class Function extends CodeItem {
    *
    * @return a reference to the function's local symbol table
    */
-  public HashMap getTable () {
+  public HashMap<String, Integer> getTable () {
     return symbolTable;
   }
 

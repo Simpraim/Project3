@@ -85,6 +85,9 @@ int main (void) {
   c = addThem(a, b);
   putchar (56);
   putchar (61);
+  putchar (a+48);
+  putchar (b+48);
+  putchar (c+48);
   putchar (c+g);
   putchar (10);
 

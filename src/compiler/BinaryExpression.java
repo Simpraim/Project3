@@ -81,7 +81,6 @@ public class BinaryExpression extends Expression{
 		//Get the operation type and annotate with a new register number
 		OperationType t = opToType(op);
 		int destRegNum = f.getNewRegNum();
-		regNum = destRegNum;
 		Operand destOperand = new Operand(OperandType.REGISTER, destRegNum);
 		Operation operation = new Operation(t, f.getCurrBlock());
 		operation.setSrcOperand(0, l);

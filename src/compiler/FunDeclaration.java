@@ -101,6 +101,7 @@ public class FunDeclaration extends Declaration {
 
 		if (parameters != null) {
 			for (Param p : parameters) {
+
 				if (table.containsKey(p.identifier)) {
 					throw new Exception("Error: the variable " + p.identifier +
 							" is already in use");
@@ -121,9 +122,7 @@ public class FunDeclaration extends Declaration {
 					prevParam = tempParam;
 				}
 			}
-		} else {
-			firstParam = new FuncParam(Data.TYPE_VOID, "void", false);
-		}
+		} 
 
 		// void????
 		f.setFirstParam(firstParam);

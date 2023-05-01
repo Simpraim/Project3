@@ -1,15 +1,65 @@
 (DATA  x)
-(FUNCTION  add  [(int a) (int b)]
+(FUNCTION  a  [(int s) (int t)]
   (BB 2
-    (OPER 9 Mov [(r 1)]  [(m EDI)])
-    (OPER 10 Mov [(r 2)]  [(m ESI)])
+    (OPER 22 Mov [(r 1)]  [(m EDI)])
+    (OPER 23 Mov [(r 2)]  [(m ESI)])
   )
   (BB 3
     (OPER 4 Mov [(r 0)]  [(r 0)])
     (OPER 5 Mov [(r 0)]  [(r 0)])
-    (OPER 11 Mov [(r 3)]  [(r 1)])
-    (OPER 6 Add_I [(r 3)]  [(r 3)(r 2)])
-    (OPER 7 Mov [(m EAX)]  [(r 3)])
+  )
+  (BB 4
+    (OPER 6 Mov [(r 5)]  [(i 1)])
+    (OPER 24 Cmp [(m Flags)]  [(r 4)(r 5)])
+    (OPER 25 BGE []  [(bb 6)(m Flags)])
+  )
+  (BB 5
+    (OPER 9 Mov [(r 7)]  [(i 1)])
+    (OPER 10 Mov [(m EAX)]  [(r 7)])
+    (OPER 11 Jmp []  [(bb 1)])
+  )
+  (BB 8
+    (OPER 14 Mov [(r 8)]  [(i 10)])
+    (OPER 26 Cmp [(m Flags)]  [(r 4)(r 8)])
+    (OPER 27 BGE []  [(bb 10)(m Flags)])
+  )
+  (BB 9
+    (OPER 17 Mov [(r 0)]  [(r 0)])
+    (OPER 18 Jmp []  [(bb 8)])
+  )
+  (BB 10
+    (OPER 28 Mov [(r 10)]  [(r 1)])
+    (OPER 19 Add_I [(r 10)]  [(r 10)(r 2)])
+    (OPER 20 Mov [(m EAX)]  [(r 10)])
+  )
+  (BB 1
+    (OPER 2 Return []  [(m EAX)])
+  )
+  (BB 6
+    (OPER 12 Mov [(r 0)]  [(r 0)])
+    (OPER 13 Jmp []  [(bb 8)])
+  )
+)
+(FUNCTION  b  [(int l) (int r)]
+  (BB 2
+    (OPER 7 Mov [(r 1)]  [(m EDI)])
+    (OPER 8 Mov [(r 2)]  [(m ESI)])
+  )
+  (BB 3
+    (OPER 9 Mov [(r 3)]  [(r 1)])
+    (OPER 4 Add_I [(r 3)]  [(r 3)(r 2)])
+    (OPER 5 Mov [(m EAX)]  [(r 3)])
+  )
+  (BB 1
+    (OPER 2 Return []  [(m EAX)])
+  )
+)
+(FUNCTION  main  []
+  (BB 2
+  )
+  (BB 3
+    (OPER 4 Mov [(r 1)]  [(i 1)])
+    (OPER 5 Mov [(m EAX)]  [(r 1)])
   )
   (BB 1
     (OPER 2 Return []  [(m EAX)])

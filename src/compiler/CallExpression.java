@@ -46,27 +46,44 @@ public class CallExpression extends Expression {
 	}
 	protected void genCode(Function f)throws Exception{
 		//loop through params
-		expressionList.forEach((expr)->{
+		int paramCount = 0;
+		for(Expression e:expressionList){
 			try {
-				expr.genCode(f);
-				int regNum = expr.getRegNum();
+				
+				e.genCode(f);
+				int regNum = e.getRegNum();
 				//Create an operand
 				Operand newOperand = new Operand(OperandType.REGISTER, regNum);
 				//Create a pass operation 
 				Operation operation = new Operation(OperationType.PASS, f.getCurrBlock());
+				Attribute a = new Attribute("PARAM_NUM",Integer.toString(paramCount));
+				operation.addAttribute(a);
+				paramCount++;
 				operation.setSrcOperand(0, newOperand);
 				//append operation to function current block
 				f.getCurrBlock().appendOper(operation);
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
-		});
+		};
 		//create call operation
+		int newReg = f.getNewRegNum();
 		Operand function_string = new Operand(OperandType.STRING, Identifier);
 		Operation function = new Operation(OperationType.CALL, f.getCurrBlock());
+		Attribute a1 = new Attribute("numParams",Integer.toString(expressionList.size()));
+		function.addAttribute(a1);
 		function.setSrcOperand(0, function_string);
 		f.getCurrBlock().appendOper(function);
-		setRegNum(regNum);
+		Operation retVal = new Operation(OperationType.ASSIGN, f.getCurrBlock());
+		Operand regOperand = new Operand(OperandType.REGISTER, newReg);
+		Operand src = new Operand(OperandType.MACRO, "RetReg");
+		retVal.setSrcOperand(0, src);
+		retVal.setDestOperand(0, regOperand);
+		f.getCurrBlock().appendOper(retVal);
+		setRegNum(newReg);
+		
+		
+		
 		//create assign operation
 		
 
